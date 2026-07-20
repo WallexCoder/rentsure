@@ -2,12 +2,38 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  phone        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  reports      AgentReport[]
+}
+
+model AgentReport {
+  id          Int      @id @default(autoincrement())
+  agentName   String
+  agentPhone  String
+  description String   @db.Text
+  area        String
+  proofUrl    String?
+  createdAt   DateTime @default(now())
+
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@index([agentName])
+  @@index([agentPhone])
 }
