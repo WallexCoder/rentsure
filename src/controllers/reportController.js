@@ -68,4 +68,31 @@ const getRecentReports = async (req, res) => {
   }
 };
 
-module.exports = { createReport, searchReports, getRecentReports };
+
+// Get all reports for one specific agent (by exact phone number)
+const getAgentReports = async (req, res) => {
+  try {
+    const { phone } = req.params;
+
+    const reports = await prisma.agentReport.findMany({
+      where: { agentPhone: phone },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    if (reports.length === 0) {
+      return res.status(404).json({ error: 'No reports found for this agent' });
+    }
+
+    res.status(200).json({
+      agentName: reports[0].agentName,
+      agentPhone: reports[0].agentPhone,
+      totalReports: reports.length,
+      reports,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+};
+
+module.exports = { createReport, searchReports, getRecentReports, getAgentReports };

@@ -148,10 +148,12 @@ export default function HomePage() {
     </div>
   );
 }
-
 function ReportCard({ report }: { report: Report }) {
   return (
-    <div className="bg-[#1A1A24] rounded-xl p-4 border border-[#2A2A38]">
+    
+    <a  href={`/agent/${encodeURIComponent(report.agentPhone)}`}
+      className="block bg-[#1A1A24] rounded-xl p-4 border border-[#2A2A38] hover:border-[#A78BFA] transition-colors"
+    >
       <div className="flex justify-between items-start mb-1">
         <h4 className="font-medium">{report.agentName}</h4>
         <span className="text-xs text-gray-500">
@@ -160,6 +162,6 @@ function ReportCard({ report }: { report: Report }) {
       </div>
       <p className="text-sm text-gray-400 mb-2">{report.agentPhone} · {report.area}</p>
       <p className="text-sm text-gray-300">{report.description}</p>
-    </div>
+    </a>
   );
 }

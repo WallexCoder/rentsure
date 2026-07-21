@@ -58,3 +58,8 @@ export const getRecentReports = async () => {
   const res = await fetch(`${API_BASE_URL}/reports/recent`);
   return res.json();
 };
+
+export const getAgentReports = async (phone: string) => {
+  const res = await fetch(`${API_BASE_URL}/reports/agent/${encodeURIComponent(phone)}`);
+  return res.json();
+};
