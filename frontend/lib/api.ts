@@ -12,6 +12,25 @@ interface LoginData {
   password: string;
 }
 
+export const createReport = async (data: {
+  agentName: string;
+  agentPhone: string;
+  description: string;
+  area: string;
+}) => {
+  const token = localStorage.getItem('token');
+
+  const res = await fetch(`${API_BASE_URL}/reports`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+  return res.json();
+};
+
 export const registerUser = async (data: RegisterData) => {
   const res = await fetch(`${API_BASE_URL}/auth/register`, {
     method: 'POST',
@@ -27,5 +46,15 @@ export const loginUser = async (data: LoginData) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
+  return res.json();
+};
+
+export const searchReports = async (query: string) => {
+  const res = await fetch(`${API_BASE_URL}/reports/search?query=${encodeURIComponent(query)}`);
+  return res.json();
+};
+
+export const getRecentReports = async () => {
+  const res = await fetch(`${API_BASE_URL}/reports/recent`);
   return res.json();
 };
