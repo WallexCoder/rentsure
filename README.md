@@ -77,14 +77,7 @@ The platform allows users to browse available properties, view detailed informat
 
 To build a trusted digital marketplace where renters can confidently discover properties, verify agents, and avoid rental scams through transparency, community feedback, and secure verification.
 
-## 📂 Project Status
-
-🚧 Currently under active development.
-
 ## 🤝 Contributing
 
 Contributions, feature requests, and suggestions are welcome. Feel free to fork the repository and submit a pull request.
 
-## 📜 License
-
-This project is licensed under the MIT License.
