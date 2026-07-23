@@ -1,64 +1,89 @@
-# 🏠 AgentCheck
+# 🏠 RentSure
 
-> Helping renters avoid scams by verifying agents before they pay.
+> Find trusted homes. Connect with verified agents. Rent with confidence.
 
 ## 📖 About
 
-**AgentCheck** is a platform designed to help people make safer rental decisions by providing a trusted place to search, verify, and review real estate agents.
+RentSure is a modern property marketplace that helps people find rental properties while promoting transparency and trust between renters and real estate agents.
 
-Finding a house shouldn't feel like a gamble. AgentCheck empowers renters with community-driven reviews, scam reports, and verified agent profiles to reduce rental fraud and improve transparency in the housing market.
+The platform allows users to browse available properties, view detailed information, connect with verified agents, and make informed decisions through community reviews and agent ratings. By combining property listings with agent verification and reputation, RentSure aims to reduce rental scams and create a safer renting experience.
 
 ## ✨ Features
 
-* 🔍 Search agents by name or phone number
-* ⭐ Community ratings and reviews
-* 🚨 Report rental scams with supporting evidence
-* ✅ Verified agent profiles
-* 🏘️ View agent history and reputation
-* 📊 Agent trust score
-* 📍 Location-based agent search
-* 👨‍💼 Admin dashboard for review moderation
+### For Renters
+
+* 🔐 Secure user authentication
+* 🏠 Browse available rental properties
+* 📍 Search properties by location
+* 🔎 View detailed property information
+* 👤 View agent profiles
+* ⭐ Read and leave agent reviews
+* 🚨 Report suspicious agents or listings
+* ❤️ Save favourite properties
+
+### For Agents
+
+* 👨‍💼 Create and manage agent profile
+* ✅ Identity verification
+* 🏡 Publish property listings
+* 📸 Upload property images
+* ✏️ Edit or remove listings
+* 💬 Respond to reviews
+
+### Admin
+
+* Manage users and agents
+* Verify agent identities
+* Moderate reviews and scam reports
+* Remove fraudulent listings
 
 ## 🚀 Future Features
 
-* House and apartment reviews
-* Neighbourhood safety and amenities
-* Fake listing detection
-* Inspection fee transparency
-* Landlord reviews
 * AI-powered scam detection
-* Property verification
-* Interactive map of verified agents
+* Property recommendation system
+* Interactive maps
+* In-app messaging
+* Appointment scheduling
+* Landlord verification
+* Property availability calendar
+* Mobile application
 
 ## 🛠️ Tech Stack
 
-**Frontend**
+### Frontend
 
 * Next.js
-* React
+* TypeScript
 * Tailwind CSS
 
-**Backend**
+### Backend
 
-* FastAPI (or Node.js/Express)
-* PostgreSQL
-* Prisma / SQLAlchemy
+* FastAPI
+* Python
 
-**Authentication**
+### Database
 
-* Clerk or JWT Authentication
+* MySQL
 
-**Storage**
+### Authentication
 
-* Cloudinary / Supabase Storage
+* JWT Authentication
 
-## 🎯 Vision
+### Storage
 
-To become the most trusted platform for verifying rental agents and preventing housing scams across Africa.
+* Cloudinary
+
+## 🎯 Project Goal
+
+To build a trusted digital marketplace where renters can confidently discover properties, verify agents, and avoid rental scams through transparency, community feedback, and secure verification.
+
+## 📂 Project Status
+
+🚧 Currently under active development.
 
 ## 🤝 Contributing
 
-Contributions, feature ideas, and feedback are welcome. Feel free to open an issue or submit a pull request.
+Contributions, feature requests, and suggestions are welcome. Feel free to fork the repository and submit a pull request.
 
 ## 📜 License
 

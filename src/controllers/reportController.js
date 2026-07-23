@@ -72,7 +72,7 @@ const getRecentReports = async (req, res) => {
 // Get all reports for one specific agent (by exact phone number)
 const getAgentReports = async (req, res) => {
   try {
-    const { phone } = req.params;
+    const { phone } = req.params; 
 
     const reports = await prisma.agentReport.findMany({
       where: { agentPhone: phone },

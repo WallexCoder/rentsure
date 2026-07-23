@@ -11,29 +11,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  AGENT
+}
+
 model User {
   id           Int      @id @default(autoincrement())
   name         String
   email        String   @unique
   phone        String   @unique
   passwordHash String
+  role         Role     @default(USER)
   createdAt    DateTime @default(now())
 
-  reports      AgentReport[]
+  listings     Listing[]
 }
 
-model AgentReport {
+model Listing {
   id          Int      @id @default(autoincrement())
-  agentName   String
-  agentPhone  String
+  title       String
   description String   @db.Text
-  area        String
-  proofUrl    String?
+  price       Int
+  location    String
+  bedrooms    Int
+  bathrooms   Int
+  images      Json
   createdAt   DateTime @default(now())
 
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id])
+  agentId     Int
+  agent       User     @relation(fields: [agentId], references: [id])
 
-  @@index([agentName])
-  @@index([agentPhone])
+  @@index([location])
 }
