@@ -7,6 +7,7 @@ import { registerUser } from '@/lib/api';
 export default function RegisterPage() {
   const router = useRouter();
   const [form, setForm] = useState({ name: '', email: '', phone: '', password: '' });
+  const [role, setRole] = useState<'USER' | 'AGENT'>('USER');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -28,7 +29,7 @@ export default function RegisterPage() {
     }
 
     setLoading(true);
-    const res = await registerUser(form);
+    const res = await registerUser({ ...form, role });
     setLoading(false);
 
     if (res.error) {
@@ -49,7 +50,7 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center bg-[#0B0B12] px-6">
       <div className="w-full max-w-sm">
         <h1 className="text-2xl font-semibold text-white mb-1">
-          Agent<span className="text-[#A78BFA]">Check</span>
+          Rent<span className="text-[#A78BFA]">Sure</span>
         </h1>
 
         <h2 className="text-3xl font-bold text-white mt-8 mb-8">Sign up</h2>
@@ -123,6 +124,34 @@ export default function RegisterPage() {
             className="w-full bg-[#1A1A24] text-white placeholder-gray-500 rounded-xl px-4 py-3.5 outline-none border border-transparent focus:border-[#A78BFA] transition-colors"
             required
           />
+
+          <div>
+            <p className="text-sm text-gray-400 mb-2">I am signing up as:</p>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setRole('USER')}
+                className={`py-3 rounded-xl text-sm font-medium border transition-colors ${
+                  role === 'USER'
+                    ? 'bg-[#8B5CF6] border-[#8B5CF6] text-white'
+                    : 'bg-[#1A1A24] border-[#2A2A38] text-gray-400'
+                }`}
+              >
+                House Hunter
+              </button>
+              <button
+                type="button"
+                onClick={() => setRole('AGENT')}
+                className={`py-3 rounded-xl text-sm font-medium border transition-colors ${
+                  role === 'AGENT'
+                    ? 'bg-[#8B5CF6] border-[#8B5CF6] text-white'
+                    : 'bg-[#1A1A24] border-[#2A2A38] text-gray-400'
+                }`}
+              >
+                Agent
+              </button>
+            </div>
+          </div>
 
           <button
             type="submit"

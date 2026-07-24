@@ -5,31 +5,13 @@ interface RegisterData {
   email: string;
   phone: string;
   password: string;
+  role: 'USER' | 'AGENT';
 }
 
 interface LoginData {
   email: string;
   password: string;
 }
-
-export const createReport = async (data: {
-  agentName: string;
-  agentPhone: string;
-  description: string;
-  area: string;
-}) => {
-  const token = localStorage.getItem('token');
-
-  const res = await fetch(`${API_BASE_URL}/reports`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(data),
-  });
-  return res.json();
-};
 
 export const registerUser = async (data: RegisterData) => {
   const res = await fetch(`${API_BASE_URL}/auth/register`, {
@@ -49,17 +31,64 @@ export const loginUser = async (data: LoginData) => {
   return res.json();
 };
 
-export const searchReports = async (query: string) => {
-  const res = await fetch(`${API_BASE_URL}/reports/search?query=${encodeURIComponent(query)}`);
+export const getListings = async (filters?: {
+  location?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  bedrooms?: string;
+}) => {
+  const params = new URLSearchParams();
+  if (filters?.location) params.append('location', filters.location);
+  if (filters?.minPrice) params.append('minPrice', filters.minPrice);
+  if (filters?.maxPrice) params.append('maxPrice', filters.maxPrice);
+  if (filters?.bedrooms) params.append('bedrooms', filters.bedrooms);
+
+  const res = await fetch(`${API_BASE_URL}/listings?${params.toString()}`);
   return res.json();
 };
 
-export const getRecentReports = async () => {
-  const res = await fetch(`${API_BASE_URL}/reports/recent`);
+export const getListingById = async (id: string) => {
+  const res = await fetch(`${API_BASE_URL}/listings/${id}`);
   return res.json();
 };
 
-export const getAgentReports = async (phone: string) => {
-  const res = await fetch(`${API_BASE_URL}/reports/agent/${encodeURIComponent(phone)}`);
+export const createListing = async (data: {
+  title: string;
+  description: string;
+  price: string;
+  location: string;
+  bedrooms: string;
+  bathrooms: string;
+  images: string[];
+}) => {
+  const token = localStorage.getItem('token');
+
+  const res = await fetch(`${API_BASE_URL}/listings`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+  return res.json();
+};
+
+export const getMyListings = async () => {
+  const token = localStorage.getItem('token');
+
+  const res = await fetch(`${API_BASE_URL}/listings/mine`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.json();
+};
+
+export const deleteListing = async (id: number) => {
+  const token = localStorage.getItem('token');
+
+  const res = await fetch(`${API_BASE_URL}/listings/${id}`, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` },
+  });
   return res.json();
 };
