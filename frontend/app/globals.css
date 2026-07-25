@@ -4,3 +4,6 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+body {
+  font-family: var(--font-jakarta), sans-serif;
+}
