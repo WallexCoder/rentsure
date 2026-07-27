@@ -43,7 +43,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-[#0B0B12] px-6">
       <div className="w-full max-w-sm">
         <h1 className="text-2xl font-semibold text-white mb-1">
-          Agent<span className="text-[#A78BFA]">Check</span>
+          Rrent<span className="text-[#A78BFA]">Sure</span>
         </h1>
 
         <h2 className="text-3xl font-bold text-white mt-8 mb-8">Log in</h2>
